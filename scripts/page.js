@@ -340,13 +340,11 @@ console.log("number: ", numPlayers);
                 if (numPlayers === 1)
                 {   // This is the first player to connect, initialize the contest.
 
-console.log("initializeGame():");
                     connected = initializeGame (database);
                 }
                 else
                 {   // This is the second player to connect, join in the contest
 
-console.log("joinGame()");        
                     connected = joinGame(database);
                 }
             }
