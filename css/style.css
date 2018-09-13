@@ -72,17 +72,17 @@ section
 /* miscellaneous style settings     */
 /*                                  */
 
-.error-wrapper
+.msg-wrapper
 {   position: fixed;
     top: 30%;
     width: 100%;
 }
 
-.error-div
-{   background: #ffafaf;
-    border: 2px solid #ff4f4f;
-    border-radius: 5px;
-    color: #ff4f4f;
+.msg-div
+{   /* background: #ffafaf; */
+    /* border: 2px solid #ff4f4f; */
+    /* border-radius: 5px; */
+    /* color: #ff4f4f; */
     margin: 0px auto;
     font-size: 20px;
     opacity: 1.0;
@@ -90,22 +90,35 @@ section
     width: 80%;
 }
 
-.error-heading
+.msg-heading
 {   background: #ff4f4f;
     color: #ffafaf;
     padding: 5px;
 }
 
-.error-message
-{   /* background: #ffafaf; */
-    /* border: 2px solid #ff4f4f; */
-    /* border-radius: 5px; */
-    /* color: #ff4f4f; */
-    /* margin: 0px auto; */
-    /* font-size: 20px; */
-    /* opacity: 1.0; */
-    padding: 10px;
-    /* width: 100%; */
+.msg-message
+{   padding: 10px;
+}
+
+.fatal-theme
+{   background: #ffafaf;
+    border: 2px solid #ff4f4f;
+    border-radius: 5px;
+    color: #ff4f4f;
+}
+
+.info-theme
+{   background: #afffaf;
+    border: 2px solid #4fff4f;
+    border-radius: 5px;
+    color: #4fff4f;
+}
+
+.warning-theme
+{   background: #ffffaf;
+    border: 2px solid #ffff4f;
+    border-radius: 5px;
+    color: #ffff4f;
 }
 
 /*                                  */
