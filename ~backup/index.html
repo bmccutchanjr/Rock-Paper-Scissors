@@ -35,8 +35,13 @@
                                 id="name-button"
                                 type="submit">SUBMIT</button>
                     </form>
-                        <div id="your-name">Your name goes here</div>
-                        <div class="dialog-div">
+                    <div id="your-name">Your name goes here</div>
+                    <div class="dialog-div">
+                        <div id="recent-messages">
+                            <div class="div-heading">Recent Messages</div>
+                            <div class="messages"></div>
+                        </div>
+                        <form name="message-form">
                             <label for="message-input">Talk trash:</label>
                             <input id="message-input"
                                    name="message-input"
@@ -53,12 +58,7 @@
             <div class="push"></div>
         </div>
 
-        <footer>
-            <div id="recent-messages">
-                <div class="div-heading">Recent Messages</div>
-                <div class="messages"></div>
-            </div>
-        </footer>
+        <footer>Copyright&copy;</footer>
     </body>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
