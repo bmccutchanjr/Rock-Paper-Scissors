@@ -8,12 +8,13 @@
     --header-brd-color: darkblue;
     --header-color: white;
     --header-font: sans-serif;
+    --msg-padding: 40px;
 }
 
 body
 {   color: black;
     font-family: var(--font-family);
-    font-size: 14px;
+    font-size: 16px;
     margin: 0px;
     padding: 0px;
 }
@@ -30,6 +31,7 @@ header
 
 #button-div
 {   background: rgba(255, 255, 0, 0.5);
+    display: none;
     height: auto;
     margin: 0px auto;
     margin-bottom: 10px;
@@ -59,7 +61,7 @@ section
     margin-bottom: 10px;
 }
 
-#game, #history
+#history
 {   display: none;
 }
 
@@ -72,6 +74,58 @@ section
 /* miscellaneous style settings     */
 /*                                  */
 
+#instructions
+{   position: absolute;
+    top: 50px;
+    width: 100%;
+}
+
+.instruction-div
+{   border: 1px solid navy;
+    border-radius: 0px;
+    margin-left: 15%;
+    margin-right: 15%;
+    /* margin-top: 25px; */
+}
+
+#instructions .heading
+{   background: navy;
+    color: white;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding: 10px;
+    position: relative;
+}
+
+#instructions .close-button
+{   background: navy;
+    border: 1px solid white;
+    border-radius: 2px;
+    color: white;
+    font-size: 12px;
+    padding: 5px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+
+#instructions .close-button:hover
+{   background: white;
+    color: navy;
+}
+
+#instructions .text-div
+{   background: #eeeeff;
+    padding: var(--msg-padding);
+}
+
+#instructions .text-div img
+{   height: auto;
+    margin: 10px;
+    width: 150px;
+}
+
 .msg-wrapper
 {   position: fixed;
     top: 30%;
@@ -80,45 +134,46 @@ section
 
 .msg-div
 {   /* background: #ffafaf; */
-    /* border: 2px solid #ff4f4f; */
-    /* border-radius: 5px; */
+    border: 1px solid black;
+    border-radius: 0px;
     /* color: #ff4f4f; */
     margin: 0px auto;
-    font-size: 20px;
+    /* font-size: 20px; */
     opacity: 1.0;
     /* padding: 10px; */
     width: 80%;
 }
 
 .msg-heading
-{   background: #ff4f4f;
-    color: #ffafaf;
+{   background: darkred;
+    color: white;
     padding: 5px;
 }
 
 .msg-message
-{   padding: 10px;
+{   padding: var(--msg-padding);
 }
 
 .fatal-theme
-{   background: #ffafaf;
-    border: 2px solid #ff4f4f;
-    border-radius: 5px;
-    color: #ff4f4f;
+{   background: #ffeeee;
+    border-color: darkred;
+    /* border-radius: 5px; */
+    /* color: darkred; */
+    color: black;
 }
 
 .info-theme
-{   background: #afffaf;
-    border: 2px solid #4fff4f;
-    border-radius: 5px;
-    color: #4fff4f;
+{   background: #eeffee;
+    border-color: darkgreen;
+    /* border-radius: 5px; */
+    color: black;
 }
 
 .warning-theme
-{   background: #ffffaf;
-    border: 2px solid #ffff4f;
-    border-radius: 5px;
-    color: #ffff4f;
+{   background: #ffffee;
+    border: 2px solid #444400;
+    /* border-radius: 5px; */
+    color: black;
 }
 
 /*                                  */

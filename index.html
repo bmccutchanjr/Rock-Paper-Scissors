@@ -22,9 +22,26 @@
                 <button class="button" id="change-name-button">CHANGE NAME</button>
             </div>
             <main>
-                <section id="instructions">instructions</section>
+                <section id="instructions">
+                    <div class="instruction-div">
+                        <h2 class="heading">Instructions
+                            <button class="close-button">CLOSE</button>
+                        </h2>
+                        <div class="text-div">
+                            <p>This is a two-player implementation of the well known game Rock / Paper / Scissors.  The game is pretty simple, but unfortuanely only allows two players and one game at a time.</p>
+                            <center>
+                                <img src="images/spr-rock.png" alt="image of 'rock'">
+                                <img src="images/spr-paper.png" alt="image of 'paper'">
+                                <img src="images/spr-scissors.png" alt="image of 'scissors'">
+                            </center>
+                            <p>The first thing you need to do is enter your name, whatever you want to be called.</p>
+                            <p>The second thing you need to do is wait.  The game can only be played when two players have connected to the server.  You'll see a message prominanly displayed on your screen when both players have joined.</p>
+                            <p>Then click on one of the Rock, Paper or Scissors icons.  Rock breaks Scissors.  Scissors cut Paper.  And Paper covers Rock.</p>
+                            <p>You can send a direct message to your opponent at any time.</p>
+                        </div>
+                    </div>
+                </section>
                 <section id="game">
-                    <div id="player-count"></div>
                     <form id="name-form">
                         <label for="name-input">Your name:</label>
                         <input id="name-input"
