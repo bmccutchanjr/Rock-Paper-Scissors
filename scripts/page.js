@@ -136,8 +136,9 @@ console.log("joinGame()");
     iAmPlayerNumber = 1;
 
 // Create a database node for player two
-//     setName(database, whichPlayer (), "");
-    setName(database, iAmPlayerNumber, "");
+// 05b    setName(database, whichPlayer (), "");
+    setName(database, "PlayerTwo", "");
+// 05b    setName(database, iAmPlayerNumber, "");
 
     // And let the other player know an opponent is connecting
     database.ref("/Message").set(
@@ -160,7 +161,7 @@ function initializeGame(database)
     // And now create a node in Firebase for Player One
 
 // 05     setName(database, whichPlayer (), "");
-    setName(database, "/PlayerOne", "");
+    setName(database, "PlayerOne", "");
 
     database.ref("/PlayerTwo").remove();
 
@@ -281,7 +282,7 @@ function isGameActive ()
 {   //
 
 
-//     if (!gameActive)
+// 05    if (!gameActive)
     {   // If the game is not active (if I don't have two players) check to see if it should be.
 console.log("isGameActive()");
 // 05 console.log("PlayerOne: ", PlayerOne);
@@ -289,16 +290,25 @@ console.log("isGameActive()");
 // 05 if (PlayerOne.Name && PlayerTwo.Name)
 console.log("PlayerOne: ", Player[0]);
 console.log("PlayerTwo: ", Player[1]);
-        if (Player[0].Name && Player[1].Name)
-        {   // PlayerTwo is not created when the game is initialized, but when PlayerTwo connects to
-            // the database.  So if neither PlayerOne nor PlayerTwo is undefined, I have two active
-            // players.
-            //
-            // This code should only execute once, when PlayerTwo connects to the database
+// 05a        try
+// 05b        {   if ((Player[0] && Player[0].Name) &&
+// 05b                (Player[1] && Player[1].Name))
+            if (!Player[0]) return false;
+            if (!Player[1]) return false;
+
+            if (Player[0].Name && Player[1].Name)
+            {   // The data object for Player Two is not created when the game is initialized, rather
+                // when Player Two connects to the database.  So if neither Player[0].name nor 
+                // Player[1].Name is undefined, I have two active players.
     
-//             gameActive = true;
+            gameActive = true;
             return true;
-        }
+            }
+// 05a        }
+// 05a        catch
+// 05a        {   // 
+// 05a
+// 05a        }
     }
 
 //     if (gameActive)
@@ -587,7 +597,7 @@ console.log(snap.val());
             pushMessage ("There are " + numPlayers + " people connected to the database.");
 
 console.log("connectionsRef.on()");
-console.log("number: ", numPlayers);
+console.log("numPlayers: ", numPlayers);
 
         // It's kinda neat to know how many people are connected and playing the game at any given
         // time.  But, I don't want to do anything else after the page is loaded and the player has
