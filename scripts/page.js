@@ -267,47 +267,97 @@ function numberOfPlayers ()
 function isGameActive ()
 {   //
 
-    if (!gameActive)
-    {   // If the game is not active (if I don't have two players) check to see if it should be.
 
-        if (PlayerOne && PlayerTwo)
+//     if (!gameActive)
+    {   // If the game is not active (if I don't have two players) check to see if it should be.
+console.log("isGameActive()");
+console.log("PlayerOne: ", PlayerOne);
+console.log("PlayerTwo: ", PlayerTwo);
+        if (PlayerOne.Name && PlayerTwo.Name)
         {   // PlayerTwo is not created when the game is initialized, but when PlayerTwo connects to
             // the database.  So if neither PlayerOne nor PlayerTwo is undefined, I have two active
             // players.
             //
             // This code should only execute once, when PlayerTwo connects to the database
     
-            gameActive = true;
+//             gameActive = true;
+            return true;
         }
     }
 
-    if (gameActive)
-    {   // If the we have an active game (two players are connected the the database)
+//     if (gameActive)
+//     {   // If the we have an active game (two players are connected the the database)
+//     
+//         // Either of the players can disconnect from the database at any time.  So first check for that
+// 
+//         if (numPlayers != 2)
+//         {   // This isn't actually correct, nor is it as simple as it seems.  numPlayers is simply the
+//             // number of browsers connected to the database as set by .ref("info/Connected").  A third
+//             // browser can connect to the Firebase database and bump numPlayers to 3.  It will stay at
+//             // 3 as long as they are connected to the database.  If any of the three browsers disconnect,
+//             // numPlayers becomes 2, which would seem to be a valid number.  But is could represent one
+//             // player and one 'lurker'.  (Again, there seems no way for a browser to clean up after itself
+//             // when it disconnects from the database.)  I know of nothing in Firebase that would identify
+//             // which browser disconnected.  A simply test of any variable in this script won't tell me if
+//             // I have a valid game.
+//             //
+//             // Some kind of handshaking is required here.  That is also too involved for this application,
+//             // so I will assume a third browser never connects to the database.
+// 
+//             gameActive = false;
+// 
+//             // If I had that handshaking in place, the remaining player would reinitialize the game at
+//             // this point (esentially removing the reference point for the opposing player)
+//         }
+//     }
+console.log("gameActive: ", gameActive);
+    return gameActive;
+}
+
+function doRPS ()
+{   // Put the Rock / Paper / Scissors icons on the screen
+console.log("doRPS()");
+//     $("rps-div").remove();
+//     var game = $("#game");
+    var game = $("<div>");
+
+//     var image = $("<img> src=\"images/SPR-scissors.png\"");
+    var image = $("<img>");
+    image
+        .addClass ("rps")
+        .attr("choice", "rock")
+        .attr("src", "images/SPR-rock.png")
+        .css("height", "auto")
+        .css("width", "150px");
+console.log("doRPS()");
     
-        // Either of the players can disconnect from the database at any time.  So first check for that
+    game
+        .append(image);
 
-        if (numPlayers != 2)
-        {   // This isn't actually correct, nor is it as simple as it seems.  numPlayers is simply the
-            // number of browsers connected to the database as set by .ref("info/Connected").  A third
-            // browser can connect to the Firebase database and bump numPlayers to 3.  It will stay at
-            // 3 as long as they are connected to the database.  If any of the three browsers disconnect,
-            // numPlayers becomes 2, which would seem to be a valid number.  But is could represent one
-            // player and one 'lurker'.  (Again, there seems no way for a browser to clean up after itself
-            // when it disconnects from the database.)  I know of nothing in Firebase that would identify
-            // which browser disconnected.  A simply test of any variable in this script won't tell me if
-            // I have a valid game.
-            //
-            // Some kind of handshaking is required here.  That is also too involved for this application,
-            // so I will assume a third browser never connects to the database.
+    image = $("<img>");
+    image
+        .addClass ("rps")
+        .attr("choice", "paper")
+        .attr("src", "images/SPR-paper.png")
+        .css("height", "auto")
+        .css("width", "150px");
+        
+    game
+        .append(image);
 
-            gameActive = false;
 
-            // If I had that handshaking in place, the remaining player would reinitialize the game at
-            // this point (esentially removing the reference point for the opposing player)
+    image = $("<img>");
+    image
+        .addClass ("rps")
+        .attr("choice", "rock")
+        .attr("src", "images/SPR-scissors.png")
+        .css("height", "auto")
+        .css("width", "150px");
+            
+    game
+        .append(image);
 
-            return gameActive;
-        }
-    }
+    $("#game").append(game);
 }
 
 $(document).ready(function()
@@ -361,20 +411,34 @@ $(document).ready(function()
                 setName (database, "PlayerOne", tName);
 
                 pushMessage ("Waiting for player two");
+
+                if (PlayerTwo.Name)
+                {   setMessage (database, PlayerOne.Name + " challenges " + PlayerTwo.Name)
+                }
             }
             else
             {   playerTwoName = tName;
 
                 setName (database, "PlayerTwo", tName);
+
+                if (PlayerOne.Name)
+                {   setMessage (database, PlayerTwo.Name + " challenges " + PlayerOne.Name)
+                }
             }
 
             // and hide the name input form
             $("name-form").css("display", "none");
         }
     })
-    
+    .on("click", "rps", function()
+    {   // generic event handler for the rock / paper / scissors images
 
-    // The following is specific to Firebase: connecting to Firebase, event listeners
+        alert ($(this).attr("choice"));
+    })
+
+    //
+    // Firebase specific code: connecting to Firebase and event listeners
+    //
 
     // Initialize Firebase
 
@@ -413,6 +477,10 @@ $(document).ready(function()
                 var pTag = $("<p>");
                 pTag.html("<b>" + PlayerOne.Name + "</b> vs. <b>" + PlayerTwo.Name + "</b>");
                 nameDiv.append(pTag);
+
+                // If we have an active game, we need a way to interact with it.
+
+                doRPS ();
             }
         }
     });
@@ -432,8 +500,12 @@ $(document).ready(function()
             
                 var nameDiv = $("#your-name");
                 var pTag = $("<p>");
-                pTag.html("<b>" + playerOne + "</b> vs. <b>" + playerTwo + "</b>");
+                pTag.html("<b>" + PlayerOne.Name + "</b> vs. <b>" + PlayerTwo.Name + "</b>");
                 nameDiv.append(pTag);
+
+                // If we have an active game, we need a way to interact with it.
+
+                doRPS ();
             }
         }
     });
