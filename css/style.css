@@ -71,6 +71,30 @@ section
 }
 
 /*                                  */
+/* style settings for the main game */
+/*                                  */
+
+#rps-wrapper
+{   display: block;
+}
+
+#rock-paper-scissors
+{   display: flex;
+    justify-content: space-around;
+    margin: 0px auto;
+    width: 550px;
+}
+
+.rps-icon
+{   text-align: center;
+    width: 150px;
+}
+
+.rps-icon img
+{   width: 100%;
+}
+
+/*                                  */
 /* miscellaneous style settings     */
 /*                                  */
 
@@ -108,7 +132,6 @@ section
     right: 10px;
     top: 10px;
 }
-
 
 #instructions .close-button:hover
 {   background: white;

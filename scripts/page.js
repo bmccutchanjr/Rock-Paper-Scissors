@@ -202,7 +202,7 @@ function fadeIt(element)
     // once the error message of fully transparent, remove it from the DOM.
 
     if (!element)
-    {   $(".msg-div").animate({opacity: 0.1}, 5000, function()
+    {   $(".msg-div").animate({opacity: 0.0}, 5000, function()
         {
             $(".msg-wrapper").remove(); 
         });
@@ -210,7 +210,7 @@ function fadeIt(element)
     else
     if (element === "#instructions")
     {   setTimeout (function()
-        {   $(element).animate({opacity: 0.1}, 5000, function()
+        {   $(element).animate({opacity: 0.0}, 5000, function()
             {   $(element).remove();
             })
         }, 5000, element);
@@ -316,48 +316,47 @@ console.log("gameActive: ", gameActive);
 
 function doRPS ()
 {   // Put the Rock / Paper / Scissors icons on the screen
-console.log("doRPS()");
-//     $("rps-div").remove();
-//     var game = $("#game");
-    var game = $("<div>");
-
-//     var image = $("<img> src=\"images/SPR-scissors.png\"");
-    var image = $("<img>");
-    image
-        .addClass ("rps")
-        .attr("choice", "rock")
-        .attr("src", "images/SPR-rock.png")
-        .css("height", "auto")
-        .css("width", "150px");
-console.log("doRPS()");
-    
-    game
-        .append(image);
-
-    image = $("<img>");
-    image
-        .addClass ("rps")
-        .attr("choice", "paper")
-        .attr("src", "images/SPR-paper.png")
-        .css("height", "auto")
-        .css("width", "150px");
-        
-    game
-        .append(image);
-
-
-    image = $("<img>");
-    image
-        .addClass ("rps")
-        .attr("choice", "rock")
-        .attr("src", "images/SPR-scissors.png")
-        .css("height", "auto")
-        .css("width", "150px");
-            
-    game
-        .append(image);
-
-    $("#game").append(game);
+// console.log("doRPS()");
+// //     $("rps-div").remove();
+// //     var game = $("#game");
+//     var game = $("<div>");
+//
+// //     var image = $("<img> src=\"images/SPR-scissors.png\"");
+//     var image = $("<img>");
+//     image
+//         .addClass ("rps")
+//         .attr("choice", "rock")
+//         .attr("src", "images/SPR-rock.png")
+//         .css("height", "auto")
+//         .css("width", "150px");
+// console.log("doRPS()");
+//  
+//     game
+//         .append(image);
+//
+//     image = $("<img>");
+//     image
+//         .addClass ("rps")
+//         .attr("choice", "paper")
+//         .attr("src", "images/SPR-paper.png")
+//         .css("height", "auto")
+//         .css("width", "150px");
+//        
+//     game
+//         .append(image);
+//
+//     image = $("<img>");
+//     image
+//         .addClass ("rps")
+//         .attr("choice", "rock")
+//         .attr("src", "images/SPR-scissors.png")
+//         .css("height", "auto")
+//         .css("width", "150px");
+//
+//     game
+//         .append(image);
+//
+//     $("#game").append(game);
 }
 
 $(document).ready(function()
@@ -430,10 +429,12 @@ $(document).ready(function()
             $("name-form").css("display", "none");
         }
     })
-    .on("click", "rps", function()
+    .on("click", ".rps-link", function(event)
     {   // generic event handler for the rock / paper / scissors images
 
-        alert ($(this).attr("choice"));
+        event.preventDefault ();
+
+        alert ($(this).attr("value"));
     })
 
     //
